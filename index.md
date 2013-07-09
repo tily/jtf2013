@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello World!
+title: JFT ニフティクラウド ハンズオン
 tagline: Supporting tagline
 ---
 {% include JB/setup %}
