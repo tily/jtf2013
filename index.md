@@ -50,10 +50,13 @@ Chef 関連のモジュールは /opt/chef 配下にインストールされる�
 ### 1.3. Chef Apply を試してみる
 
 chef-apply というコマンドもインストールされます。
+
 chef-solo よりも手軽に Chef の「べき等性」が試せるツールなので、試してみましょう。
 
 まずはかんたんなレシピを作成します。
+
 ファイルを作成して中に "hello world" と書き込むだけのものです。
+
 (chef-apply なので 1 つのファイルから Chef 実行できますが、実際には COOKBOOK_NAME/recipes/default.rb のように cookbook の中のレシピに書くような内容です。)
 
     # vi recipe.rb
@@ -87,6 +90,7 @@ chef-solo よりも手軽に Chef の「べき等性」が試せるツールな�
       * file[/var/tmp/test.txt] action create (up to date)
 
 今度は up to date と表示され何も起きません。これはサーバーがレシピに書かれた内容通りの状態になっていることを Chef が認識し、ファイル作成をスキップしたためです。
+
 このような性質を構成管理ツールの世界では idemponent (べき等) と呼んでいます。
 
 次にわざと作成されたファイルを書き換えた上で実行してみましょう。
@@ -105,8 +109,8 @@ chef-solo よりも手軽に Chef の「べき等性」が試せるツールな�
             +hello, world
 
 ファイルが書き換わったことを認識して Chef がレシピ通りの状態に復元してくれたことが確認できたと思います。
-今度は recipe.rb 自体のほうを書き換えた上で Chef 実行してみます。
 
+今度は recipe.rb 自体のほうを書き換えた上で Chef 実行してみます。
 
     # vi recipe.rb
     ## world を chef に書き換えた
