@@ -5,42 +5,52 @@ tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+## 1. 準備
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+### 1.1. SSH でサーバーへログイン
 
-## Update Author Attributes
+### 1.2. Chef Solo のインストール
 
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
+下記コマンドで一発でインストールすることができます。
 
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
+    # curl -L https://www.opscode.com/chef/install.sh | bash
 
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
+ちなみにバージョンを固定したい場合は下記のように RPM からインストールすることも可能です。
 
-    $ rm -rf _posts/core-samples
+    # rpm -ivh https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-11.4.4-2.el6.x86_64.rpm
 
-Here's a sample "posts list".
+正常にインストールが完了したかどうかは chef-solo コマンドで確認しましょう。
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+    # chef-solo
+    # which chef-solo
+    /usr/bin/chef-solo
 
-## To-Do
+Chef 関連のモジュールは /opt/chef 配下にインストールされるので興味のある人は ls で閲覧してみてください。
 
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
+### 1.3. Chef Apply を試してみる
 
+chef-apply というコマンドもインストールされます。
+chef-solo よりも手軽に Chef の「べき等性」が試せるツールなので、試してみましょう。
+
+    vi recipe.rb
+    file '/var/tmp/hello.txt' do
+      content "hello world!\n"
+    end
+
+### 1.4. Chef Solo 用の設定ファイル配置
+
+    /etc/chef/solo.rb
+    /etc/chef/dna.json
+    mkdir -p /var/chef/cookbooks
+
+## 2. レシピ開発
+
+### 2.1. 
+
+スキルのある人は自由に開発？
+
+### 2.2.
+
+
+## 3. Chef サーバーを使ってみる (時間のある人向け)
 
