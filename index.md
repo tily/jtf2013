@@ -1,6 +1,6 @@
 ---
 layout: page
-title: JFT ハンズオン資料
+title: JTF ハンズオン資料
 tagline: 2013/07/14
 ---
 {% include JB/setup %}
